@@ -21,15 +21,21 @@ import java.util.Map;
 
 @Controller
 public class ServicesDashboardController {
-    @Autowired
-    private ServicesService servicesService;
+
+    private final ServicesService servicesService;
 
     private final Cloudinary cloudinary;
 
-    public ServicesDashboardController(Cloudinary cloudinary) {
+    public ServicesDashboardController(ServicesService servicesService, Cloudinary cloudinary) {
+        this.servicesService = servicesService;
         this.cloudinary = cloudinary;
     }
 
+    @GetMapping("/services")
+    public String services() {
+        return "/services";
+
+    }
     @GetMapping("/dashboard/services")
     public String servicesIndex(Model model) {
         List<ServicesDashboardDto> data = servicesService.getServices();

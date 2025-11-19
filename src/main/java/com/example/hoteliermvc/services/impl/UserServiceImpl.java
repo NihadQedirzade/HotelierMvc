@@ -12,12 +12,18 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private ModelMapper modelMapper;
-    @Autowired
-    private BCryptPasswordEncoder encoder;
+
+    private final UserRepository userRepository;
+
+    private final ModelMapper modelMapper;
+
+    private final BCryptPasswordEncoder encoder;
+
+    public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper, BCryptPasswordEncoder encoder) {
+        this.userRepository = userRepository;
+        this.modelMapper = modelMapper;
+        this.encoder = encoder;
+    }
 
     @Override
     public void registerUser(UserRegisterDto userRegisterDto) {

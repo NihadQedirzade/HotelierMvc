@@ -1,14 +1,14 @@
 package com.example.hoteliermvc.models;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "rooms")
 
 public class Rooms{
@@ -22,4 +22,5 @@ public class Rooms{
 
     @ManyToOne
     private Category category;
+
 }

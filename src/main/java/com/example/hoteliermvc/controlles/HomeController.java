@@ -11,8 +11,12 @@ import java.util.List;
 
 @Controller
 public class HomeController {
-@Autowired
-private RoomsService roomsService;
+
+private final RoomsService roomsService;
+
+    public HomeController(RoomsService roomsService) {
+        this.roomsService = roomsService;
+    }
 
     @GetMapping("/")
     public String home(Model model) {

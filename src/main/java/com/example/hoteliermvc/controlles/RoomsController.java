@@ -8,6 +8,7 @@ import com.example.hoteliermvc.dtos.RoomsDto.RoomsDashboardDto;
 import com.example.hoteliermvc.dtos.RoomsDto.RoomsUpdateDto;
 import com.example.hoteliermvc.services.CategoryService;
 import com.example.hoteliermvc.services.RoomsService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,15 +24,22 @@ import java.util.Map;
 
 @Controller
 public class RoomsController {
-    @Autowired
-    private RoomsService roomsService;
-    @Autowired
-    private CategoryService categoryService;
 
+
+    private final RoomsService roomsService;
+
+    private final CategoryService categoryService;
     private final Cloudinary cloudinary;
 
-    public RoomsController(Cloudinary cloudinary) {
+    public RoomsController(RoomsService roomsService, CategoryService categoryService, Cloudinary cloudinary) {
+        this.roomsService = roomsService;
+        this.categoryService = categoryService;
         this.cloudinary = cloudinary;
+    }
+    @GetMapping("/rooms")
+    public String rooms(Model model) {
+        model.addAttribute("rooms", roomsService.getAllRooms());
+        return "/rooms";
     }
 
     @GetMapping("/dashboard/rooms")

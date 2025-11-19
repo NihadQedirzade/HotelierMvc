@@ -20,12 +20,14 @@ import java.util.ArrayList;
 import java.util.List;
 @Service
 public class ServicesServiceImpl implements ServicesService {
-    @Autowired
-    private ServicesRepository serviceRepository;
 
-    @Autowired
-    private ModelMapper modelMapper;
+    private final ServicesRepository serviceRepository;
+    private final ModelMapper modelMapper;
 
+    public ServicesServiceImpl(ServicesRepository serviceRepository, ModelMapper modelMapper) {
+        this.serviceRepository = serviceRepository;
+        this.modelMapper = modelMapper;
+    }
 
     @Override
     public void addService(ServicesCreateDto servicesCreateDto) {

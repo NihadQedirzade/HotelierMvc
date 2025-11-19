@@ -19,12 +19,18 @@ import java.util.stream.Collectors;
 @Service
 public class RoomsServiceImpl implements RoomsService {
 
-    @Autowired
-    private RoomsRepository roomsRepository;
-    @Autowired
-    private ModelMapper modelMapper;
-    @Autowired
-    private CategoryService categoryService;
+
+    private final RoomsRepository roomsRepository;
+
+    private final ModelMapper modelMapper;
+
+    private final CategoryService categoryService;
+
+    public RoomsServiceImpl(RoomsRepository roomsRepository, ModelMapper modelMapper, CategoryService categoryService) {
+        this.roomsRepository = roomsRepository;
+        this.modelMapper = modelMapper;
+        this.categoryService = categoryService;
+    }
 
     @Override
     public void addRoom(RoomsCreateDto roomsCreateDto) {
