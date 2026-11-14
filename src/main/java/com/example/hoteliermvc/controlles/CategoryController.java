@@ -53,7 +53,6 @@ public class CategoryController {
 
         @GetMapping("/dashboard/category/delete/{id}")
         public String deleteCategory(@PathVariable Long id) {
-
         return "/dashboard/category/delete";
     }
 
